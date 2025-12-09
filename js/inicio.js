@@ -8,12 +8,12 @@ onAuthStateChanged(auth, (user) => {
     const userEmail = document.getElementById("user-email");
 
     if (user) {
-        // Mostrar correo y el botón de cerrar sesión
+        // Si está logueado, mostrar correo y botón de logout
         if (userEmail) userEmail.textContent = user.email;
         if (logoutButton) logoutButton.style.display = "block";
         if (loginButton) loginButton.style.display = "none"; // Ocultar el botón de login cuando el usuario está logueado
     } else {
-        // Mostrar solo el botón de login
+        // Si no está logueado, mostrar solo el botón de login
         if (logoutButton) logoutButton.style.display = "none";
         if (loginButton) loginButton.style.display = "block";
     }
