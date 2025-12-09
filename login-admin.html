@@ -13,12 +13,11 @@
 
         <input id="email" type="email" placeholder="Correo electrónico">
         <input id="password" type="password" placeholder="Contraseña">
-
         <input id="codigoAdmin" type="password" placeholder="Código de Administrador">
 
         <button id="loginBtn">Ingresar</button>
 
-        <a href="login-cliente.html" class="switch-login">Ingresar como cliente</a>
+        <a href="login-cliente.html" class="switch-login">¿Ingresar como cliente?</a>
     </div>
 
     <script type="module">
@@ -30,14 +29,16 @@
             const pass = document.getElementById("password").value;
             const codigo = document.getElementById("codigoAdmin").value;
 
+            // Validar código de administrador
             if (codigo !== "ADMIN123") {
                 alert("Código de administrador incorrecto");
                 return;
             }
 
+            // Autenticación con Firebase
             signInWithEmailAndPassword(auth, email, pass)
                 .then(() => {
-                    window.location.href = "dashboard-admin.html";
+                    window.location.href = "dashboard-admin.html"; // Redirigir al panel de admin
                 })
                 .catch(error => {
                     alert("Error: " + error.message);
