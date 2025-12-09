@@ -193,3 +193,79 @@
 body {
     background: #f5f7fb;
 }
+
+
+/* =================== FORMULARIO DE LOGIN ==================== */
+.login-body {
+    background: #f5f7fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.input-group {
+    margin: 15px 0;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #f6f6f6;
+    margin-top: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+button#loginBtn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button#loginBtn:hover {
+    background-color: #0056b3;
+}
+
+.switch-login {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #007BFF;
+}
+
+.switch-login:hover {
+    text-decoration: underline;
+}
+
