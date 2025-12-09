@@ -29,7 +29,7 @@
 
             signInWithEmailAndPassword(auth, email, pass)
                 .then(() => {
-                    window.location.href = "index.html"; // lleva al panel del cliente
+                    window.location.href = "index.html";
                 })
                 .catch(error => {
                     alert("Error: " + error.message);
