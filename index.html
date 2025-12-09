@@ -3,120 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Reservas</title>
+    <title>Panel del Cliente</title>
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/inicio.css">
-
-    <!-- Firebase versión 8 -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
 <body>
 
-    <!-- ========== PANTALLA DE INICIO ========== -->
-    <section id="pantalla-inicio" class="inicio-container">
-        <h1>Bienvenido al Sistema de Reservas</h1>
-        <p>Seleccione el tipo de acceso</p>
+    <!-- BARRA SUPERIOR -->
+    <header class="top-bar">
+        <div class="left">
+            <img src="img/logo.png" class="logo-icon">
+            <span class="logo-text">Sistema de Reservas Hotel</span>
+        </div>
 
-        <div class="inicio-buttons">
-            <button id="btnLoginCliente" class="btn-login blue">Ingresar como Cliente</button>
-            <button id="btnLoginAdmin" class="btn-login orange">Ingresar como Administrador</button>
+        <div class="right">
+            <div class="user-info">
+                <span id="user-email">correo@ejemplo.com</span>
+                <small>Cliente</small>
+            </div>
+            <button class="btn-logout" id="logoutBtn">Cerrar sesión</button>
+        </div>
+    </header>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="menu-tabs">
+        <button class="tab active">Reservar</button>
+        <button class="tab">Mis Reservas</button>
+        <button class="tab">Pagos</button>
+    </nav>
+
+    <!-- BUSCADOR -->
+    <section class="search-box">
+        <h2>Buscar Habitaciones Disponibles</h2>
+        <p>Encuentra la habitación perfecta para tu estadía</p>
+
+        <div class="search-grid">
+
+            <div class="field">
+                <label>Fecha de entrada</label>
+                <input type="date">
+            </div>
+
+            <div class="field">
+                <label>Fecha de salida</label>
+                <input type="date">
+            </div>
+
+            <div class="field">
+                <label>Tipo de habitación</label>
+                <select>
+                    <option>Todas</option>
+                    <option>Simple</option>
+                    <option>Doble</option>
+                    <option>Matrimonial</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Huéspedes</label>
+                <select>
+                    <option>1 persona</option>
+                    <option>2 personas</option>
+                    <option>3 personas</option>
+                    <option>4 personas</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button class="btn-search">🔍 Buscar Habitaciones</button>
+    </section>
+
+    <!-- LISTA DE HABITACIONES -->
+    <section class="rooms-section">
+        <h3>Habitaciones Disponibles (6)</h3>
+
+        <div class="rooms-grid">
+
+            <div class="room-card">
+                <img src="img/habitacion1.jpg">
+            </div>
+
+            <div class="room-card">
+                <img src="img/habitacion2.jpg">
+            </div>
+
+            <div class="room-card">
+                <img src="img/habitacion3.jpg">
+            </div>
+
         </div>
     </section>
 
-    <!-- ========== PANEL DEL CLIENTE (tu diseño original) ========== -->
-    <section id="panel-cliente" style="display:none;">
-
-        <!-- BARRA SUPERIOR -->
-        <header class="top-bar">
-            <div class="left">
-                <img src="img/logo.png" class="logo-icon">
-                <span class="logo-text">Sistema de Reservas Hotel</span>
-            </div>
-
-            <div class="right">
-                <div class="user-info">
-                    <span id="user-email">correo@ejemplo.com</span>
-                    <small>Cliente</small>
-                </div>
-                <button class="btn-logout" id="logoutBtn">Cerrar sesión</button>
-            </div>
-        </header>
-
-        <!-- MENÚ DE NAVEGACIÓN -->
-        <nav class="menu-tabs">
-            <button class="tab active">Reservar</button>
-            <button class="tab">Mis Reservas</button>
-            <button class="tab">Pagos</button>
-        </nav>
-
-        <!-- BUSCADOR -->
-        <section class="search-box">
-            <h2>Buscar Habitaciones Disponibles</h2>
-            <p>Encuentra la habitación perfecta para tu estadía</p>
-
-            <div class="search-grid">
-
-                <div class="field">
-                    <label>Fecha de entrada</label>
-                    <input type="date">
-                </div>
-
-                <div class="field">
-                    <label>Fecha de salida</label>
-                    <input type="date">
-                </div>
-
-                <div class="field">
-                    <label>Tipo de habitación</label>
-                    <select>
-                        <option>Todas</option>
-                        <option>Simple</option>
-                        <option>Doble</option>
-                        <option>Matrimonial</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label>Huéspedes</label>
-                    <select>
-                        <option>1 persona</option>
-                        <option>2 personas</option>
-                        <option>3 personas</option>
-                        <option>4 personas</option>
-                    </select>
-                </div>
-
-            </div>
-
-            <button class="btn-search">🔍 Buscar Habitaciones</button>
-        </section>
-
-        <!-- LISTA DE HABITACIONES -->
-        <section class="rooms-section">
-            <h3>Habitaciones Disponibles (6)</h3>
-
-            <div class="rooms-grid">
-
-                <div class="room-card">
-                    <img src="img/habitacion1.jpg">
-                </div>
-
-                <div class="room-card">
-                    <img src="img/habitacion2.jpg">
-                </div>
-
-                <div class="room-card">
-                    <img src="img/habitacion3.jpg">
-                </div>
-
-            </div>
-        </section>
-
-    </section>
-
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script src="js/inicio.js"></script>
 </body>
 </html>
