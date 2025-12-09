@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-body">
+
+    <div class="login-container admin">
+        <h2>Ingreso Administrador</h2>
+
+        <input id="email" type="email" placeholder="Correo electrónico">
+        <input id="password" type="password" placeholder="Contraseña">
+
+        <input id="codigoAdmin" type="password" placeholder="Código de Administrador">
+
+        <button id="loginBtn">Ingresar</button>
+
+        <a href="login-cliente.html" class="switch-login">Ingresar como cliente</a>
+    </div>
+
+    <script type="module">
+        import { auth } from "./js/main.js";
+        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+        document.getElementById("loginBtn").addEventListener("click", () => {
+            const email = document.getElementById("email").value;
+            const pass = document.getElementById("password").value;
+            const codigo = document.getElementById("codigoAdmin").value;
+
+            if (codigo !== "ADMIN123") {
+                alert("Código de administrador incorrecto");
+                return;
+            }
+
+            signInWithEmailAndPassword(auth, email, pass)
+                .then(() => {
+                    window.location.href = "dashboard-admin.html"; // panel del admin
+                })
+                .catch(error => {
+                    alert("Error: " + error.message);
+                });
+        });
+    </script>
+
+</body>
+</html>
