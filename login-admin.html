@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css"> <!-- Asegúrate de que la ruta del CSS sea correcta -->
 </head>
 <body class="login-body">
 
@@ -43,6 +43,7 @@
                 return;
             }
 
+            // Autenticación con Firebase
             signInWithEmailAndPassword(auth, email, pass)
                 .then(() => {
                     window.location.href = "dashboard-admin.html"; // Redirigir al panel de administración
