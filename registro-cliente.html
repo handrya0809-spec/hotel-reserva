@@ -35,7 +35,8 @@
             // Registrar al usuario con Firebase
             createUserWithEmailAndPassword(auth, email, pass)
                 .then(() => {
-                    window.location.href = "index.html"; // Redirigir al panel del cliente
+                    // Redirigir al login y mostrar mensaje de éxito
+                    window.location.href = "login-cliente.html?registered=true"; // Pasar parámetro en la URL
                 })
                 .catch(error => {
                     alert("Error: " + error.message);
@@ -45,4 +46,3 @@
 
 </body>
 </html>
-
