@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Cliente</title>
+    <title>Login Admin</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="login-body">
 
-    <div class="login-container">
-        <h2>Ingreso de Cliente</h2>
+    <div class="login-container admin">
+        <h2>Ingreso Administrador</h2>
 
         <div class="input-group">
             <input id="email" type="email" placeholder="Correo electrónico" required>
@@ -19,9 +19,13 @@
             <input id="password" type="password" placeholder="Contraseña" required>
         </div>
 
+        <div class="input-group">
+            <input id="codigoAdmin" type="password" placeholder="Código de Administrador" required>
+        </div>
+
         <button id="loginBtn">Ingresar</button>
 
-        <a href="login-admin.html" class="switch-login">¿Eres administrador?</a>
+        <a href="login-cliente.html" class="switch-login">¿Ingresar como cliente?</a>
     </div>
 
     <script type="module">
@@ -31,10 +35,17 @@
         document.getElementById("loginBtn").addEventListener("click", () => {
             const email = document.getElementById("email").value;
             const pass = document.getElementById("password").value;
+            const codigo = document.getElementById("codigoAdmin").value;
+
+            // Validar código de administrador
+            if (codigo !== "ADMIN123") {
+                alert("Código de administrador incorrecto");
+                return;
+            }
 
             signInWithEmailAndPassword(auth, email, pass)
                 .then(() => {
-                    window.location.href = "index.html"; // Redirigir al panel del cliente
+                    window.location.href = "dashboard-admin.html"; // Redirigir al panel de administración
                 })
                 .catch(error => {
                     alert("Error: " + error.message);
