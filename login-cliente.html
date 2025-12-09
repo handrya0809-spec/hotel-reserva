@@ -11,8 +11,13 @@
     <div class="login-container">
         <h2>Ingreso de Cliente</h2>
 
-        <input id="email" type="email" placeholder="Correo electrónico">
-        <input id="password" type="password" placeholder="Contraseña">
+        <div class="input-group">
+            <input id="email" type="email" placeholder="Correo electrónico" required>
+        </div>
+
+        <div class="input-group">
+            <input id="password" type="password" placeholder="Contraseña" required>
+        </div>
 
         <button id="loginBtn">Ingresar</button>
 
@@ -27,7 +32,6 @@
             const email = document.getElementById("email").value;
             const pass = document.getElementById("password").value;
 
-            // Autenticación con Firebase
             signInWithEmailAndPassword(auth, email, pass)
                 .then(() => {
                     window.location.href = "index.html"; // Redirigir al panel del cliente
