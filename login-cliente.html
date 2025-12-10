@@ -6,6 +6,11 @@
     <title>Login Cliente</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+    signInWithEmailAndPassword(auth, email, pass)
+    .then(() => {
+        window.location.href = "index.html";  // SOLO DESPUÉS DE LOGIN
+    })
+
 <body class="login-body">
 
     <div class="login-container">
