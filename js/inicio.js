@@ -1,30 +1,19 @@
-// js/inicio.js
-import { auth } from './main.js';
-import { signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js';
+// BOTONES RESERVAR → ABREN EL MODAL
+document.querySelectorAll(".btn-reservar").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        const card = e.target.closest(".room-card");
 
+        document.getElementById("modalNombre").innerText =
+            card.querySelector("h4").innerText;
 
-onAuthStateChanged(auth, (user) => {
-const loginButton = document.querySelector('.dropdown');
-const logoutButton = document.getElementById('logoutBtn');
-const userEmail = document.getElementById('user-email');
+        document.getElementById("modalPrecio").innerText =
+            card.querySelector(".price").innerText;
 
-
-if (user) {
-if (userEmail) userEmail.textContent = user.email;
-if (logoutButton) logoutButton.style.display = 'block';
-if (loginButton) loginButton.style.display = 'none';
-} else {
-if (logoutButton) logoutButton.style.display = 'none';
-if (loginButton) loginButton.style.display = 'block';
-}
+        document.getElementById("modalReserva").style.display = "flex";
+    });
 });
 
-
-const logoutBtn = document.getElementById('logoutBtn');
-if (logoutBtn) {
-logoutBtn.addEventListener('click', () => {
-signOut(auth).then(() => {
-window.location.href = 'login-cliente.html';
-});
-});
-}
+// CERRAR MODAL
+document.getElementById("cerrarModal").onclick = () => {
+    document.getElementById("modalReserva").style.display = "none";
+};
