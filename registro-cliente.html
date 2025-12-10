@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrarse Cliente</title>
+    <title>Login Cliente</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="login-body">
 
     <div class="login-container">
-        <h2>Registrarse como Cliente</h2>
+        <h2>Ingreso de Cliente</h2>
+
+        <!-- Mensaje de éxito si se registró correctamente -->
+        <div id="successMessage" style="display: none; color: green;">
+            <p>¡Te has registrado correctamente! Ahora, por favor, inicia sesión.</p>
+        </div>
 
         <div class="input-group">
             <input id="email" type="email" placeholder="Correo electrónico" required>
@@ -19,24 +24,30 @@
             <input id="password" type="password" placeholder="Contraseña" required>
         </div>
 
-        <button id="registerBtn">Registrarse</button>
+        <button id="loginBtn">Ingresar</button>
 
-        <a href="login-cliente.html" class="switch-login">¿Ya tienes cuenta? Inicia sesión</a>
+        <a href="login-admin.html" class="switch-login">¿Eres administrador?</a>
+
+        <a href="registro-cliente.html" class="switch-login">¿No tienes cuenta? Regístrate aquí</a>
     </div>
 
     <script type="module">
         import { auth } from "./js/main.js";
-        import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-        document.getElementById("registerBtn").addEventListener("click", () => {
+        // Verificar si la URL tiene el parámetro 'registered'
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('registered') === 'true') {
+            document.getElementById('successMessage').style.display = 'block'; // Mostrar mensaje de éxito
+        }
+
+        document.getElementById("loginBtn").addEventListener("click", () => {
             const email = document.getElementById("email").value;
             const pass = document.getElementById("password").value;
 
-            // Registrar al usuario con Firebase
-            createUserWithEmailAndPassword(auth, email, pass)
+            signInWithEmailAndPassword(auth, email, pass)
                 .then(() => {
-                    // Redirigir al login y mostrar mensaje de éxito
-                    window.location.href = "login-cliente.html?registered=true"; // Pasar parámetro en la URL
+                    window.location.href = "index.html"; // Redirigir al panel del cliente
                 })
                 .catch(error => {
                     alert("Error: " + error.message);
