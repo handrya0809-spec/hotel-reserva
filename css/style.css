@@ -1,44 +1,52 @@
-/* --- GENERAL --- */
+/* ================================
+   ESTILOS GENERALES
+================================= */
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
-    background: #f5f5f5;
+    background: #f8f8f8;
+    margin: 0;
+    padding: 0;
 }
 
 h3 {
-    margin-left: 20px;
-    margin-top: 30px;
-    font-size: 28px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
 }
 
-/* --- GRID DE HABITACIONES --- */
+/* ================================
+   GRID DE HABITACIONES
+================================= */
 .rooms-section {
-    padding: 20px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
 }
 
 .rooms-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
-    padding: 20px;
 }
 
+/* ================================
+   TARJETA DE HABITACIÓN
+================================= */
 .room-card {
     background: white;
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: 0.25s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
 }
 
 .room-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
 }
 
 .room-card img {
     width: 100%;
-    height: 180px;
+    height: 200px;
     object-fit: cover;
 }
 
@@ -46,57 +54,41 @@ h3 {
     padding: 15px;
 }
 
-.price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #e63946;
+.room-info h4 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    color: #222;
 }
 
-/* --- BOTÓN RESERVAR --- */
+.room-info p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.price {
+    font-weight: bold;
+    color: #0a7acc;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* ================================
+   BOTÓN RESERVAR
+================================= */
 .btn-reservar {
     width: 100%;
-    padding: 12px;
+    background: #0a7acc;
     border: none;
-    background: #1d3557;
+    padding: 12px;
     color: white;
     font-size: 16px;
-    border-radius: 10px;
+    font-weight: bold;
+    border-radius: 8px;
     cursor: pointer;
-    margin-top: 10px;
-    transition: 0.2s;
+    margin-top: 12px;
+    transition: background 0.3s ease;
 }
 
 .btn-reservar:hover {
-    background: #457b9d;
-}
-
-/* --- MODAL --- */
-#modalReserva {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: white;
-    padding: 25px;
-    width: 360px;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-}
-
-.modal-content h3 {
-    margin: 0 0 15px;
-}
-
-.close-modal {
-    float: right;
-    cursor: pointer;
-    font-size: 22px;
+    background: #06639b;
 }
