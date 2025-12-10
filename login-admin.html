@@ -1,58 +1,66 @@
+<!-- login-admin.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Asegúrate de que la ruta del CSS sea correcta -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login Admin</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body class="login-body">
 
-    <div class="login-container admin">
-        <h2>Ingreso Administrador</h2>
 
-        <div class="input-group">
-            <input id="email" type="email" placeholder="Correo electrónico" required>
-        </div>
+<div class="login-container admin">
+<h2>Ingreso Administrador</h2>
 
-        <div class="input-group">
-            <input id="password" type="password" placeholder="Contraseña" required>
-        </div>
 
-        <div class="input-group">
-            <input id="codigoAdmin" type="password" placeholder="Código de Administrador" required>
-        </div>
+<div class="input-group">
+<input id="email" type="email" placeholder="Correo electrónico" required>
+</div>
 
-        <button id="loginBtn">Ingresar</button>
 
-        <a href="login-cliente.html" class="switch-login">¿Ingresar como cliente?</a>
-    </div>
+<div class="input-group">
+<input id="password" type="password" placeholder="Contraseña" required>
+</div>
 
-    <script type="module">
-        import { auth } from "./js/main.js";
-        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-        document.getElementById("loginBtn").addEventListener("click", () => {
-            const email = document.getElementById("email").value;
-            const pass = document.getElementById("password").value;
-            const codigo = document.getElementById("codigoAdmin").value;
+<div class="input-group">
+<input id="codigoAdmin" type="password" placeholder="Código de Administrador" required>
+</div>
 
-            // Validar código de administrador
-            if (codigo !== "ADMIN123") {
-                alert("Código de administrador incorrecto");
-                return;
-            }
 
-            // Autenticación con Firebase
-            signInWithEmailAndPassword(auth, email, pass)
-                .then(() => {
-                    window.location.href = "dashboard-admin.html"; // Redirigir al panel de administración
-                })
-                .catch(error => {
-                    alert("Error: " + error.message);
-                });
-        });
-    </script>
+<button id="loginBtn">Ingresar</button>
+
+
+<a href="login-cliente.html" class="switch-login">¿Ingresar como cliente?</a>
+</div>
+
+
+<script type="module">
+import { auth } from './js/main.js';
+import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js';
+
+
+document.getElementById('loginBtn').addEventListener('click', () => {
+const email = document.getElementById('email').value;
+const pass = document.getElementById('password').value;
+const codigo = document.getElementById('codigoAdmin').value;
+
+
+if (codigo !== 'ADMIN123') {
+alert('Código de administrador incorrecto');
+return;
+}
+
+
+signInWithEmailAndPassword(auth, email, pass)
+.then(() => {
+window.location.href = 'dashboard-admin.html';
+})
+.catch(err => alert('Error: ' + err.message));
+});
+</script>
+
 
 </body>
 </html>
