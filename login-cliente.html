@@ -11,6 +11,11 @@
     <div class="login-container">
         <h2>Ingreso de Cliente</h2>
 
+        <!-- Mensaje de éxito si se registró correctamente -->
+        <div id="successMessage" style="display: none; color: green;">
+            <p>¡Te has registrado correctamente! Ahora, por favor, inicia sesión.</p>
+        </div>
+
         <div class="input-group">
             <input id="email" type="email" placeholder="Correo electrónico" required>
         </div>
@@ -23,13 +28,18 @@
 
         <a href="login-admin.html" class="switch-login">¿Eres administrador?</a>
 
-        <!-- Agregar enlace para registrarse -->
         <a href="registro-cliente.html" class="switch-login">¿No tienes cuenta? Regístrate aquí</a>
     </div>
 
     <script type="module">
         import { auth } from "./js/main.js";
         import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+        // Verificar si la URL tiene el parámetro 'registered'
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('registered') === 'true') {
+            document.getElementById('successMessage').style.display = 'block'; // Mostrar mensaje de éxito
+        }
 
         document.getElementById("loginBtn").addEventListener("click", () => {
             const email = document.getElementById("email").value;
