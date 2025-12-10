@@ -1,105 +1,41 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Cliente</title>
-
-    <!-- RUTA CORRECTA DEL CSS -->
-    <link rel="stylesheet" href="CSS/style.css">
-</head>
-
-<body>
-
-<!-- =================== TOP BAR ==================== -->
-<header class="top-bar">
-    <div class="left">
-        <img src="img/logo.png" class="logo-icon" alt="logo">
-        <span class="logo-text">Bienvenido</span>
-    </div>
-
-    <div class="right">
-        <div class="user-info">
-            <span id="user-email"></span>
-        </div>
-        <button id="logoutBtn" class="btn-logout">Cerrar sesión</button>
-    </div>
-</header>
-
-
-<!-- =================== BUSCADOR ==================== -->
-<section class="search-box">
-    <h2>Buscar Habitaciones</h2>
-
-    <div class="search-grid">
-
-        <div class="field">
-            <label>Fecha de salida</label>
-            <input type="date" id="fechaSalida">
-        </div>
-
-        <div class="field">
-            <label>Tipo de habitación</label>
-            <select id="tipoRoom">
-                <option>Todas</option>
-                <option>Simple</option>
-                <option>Doble</option>
-                <option>Matrimonial</option>
-            </select>
-        </div>
-
-        <div class="field">
-            <label>Huéspedes</label>
-            <select id="huéspedes">
-                <option>1 persona</option>
-                <option>2 personas</option>
-                <option>3 personas</option>
-                <option>4 personas</option>
-            </select>
-        </div>
-
-    </div>
-
-    <button class="btn-search" id="btnBuscar">🔍 Buscar Habitaciones</button>
-</section>
-
-
-<!-- =================== HABITACIONES ==================== -->
+<!-- LISTA DE HABITACIONES -->
 <section class="rooms-section">
-    <h3>Habitaciones Disponibles (6)</h3>
+    <h3>Habitaciones Disponibles</h3>
 
     <div class="rooms-grid" id="roomsGrid">
+
+        <!-- Habitación Simple -->
         <div class="room-card">
-            <img src="img/habitacion1.jpg" alt="hab1">
+            <img src="https://images.unsplash.com/photo-1600585154363-67f6b1fc3f87?w=900" alt="simple">
+            <div class="room-info">
+                <h4>Habitación Simple</h4>
+                <p>1 huésped · Cama individual</p>
+                <p class="price">S/ 80 por noche</p>
+                <button class="btn-reservar">Reservar</button>
+            </div>
         </div>
+
+        <!-- Habitación Doble -->
         <div class="room-card">
-            <img src="img/habitacion2.jpg" alt="hab2">
+            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=900" alt="doble">
+            <div class="room-info">
+                <h4>Habitación Doble</h4>
+                <p>2 huéspedes · 2 camas individuales</p>
+                <p class="price">S/ 120 por noche</p>
+                <button class="btn-reservar">Reservar</button>
+            </div>
         </div>
+
+        <!-- Habitación Matrimonial -->
         <div class="room-card">
-            <img src="img/habitacion3.jpg" alt="hab3">
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=900" alt="matrimonial">
+            <div class="room-info">
+                <h4>Habitación Matrimonial</h4>
+                <p>2 huéspedes · Cama queen</p>
+                <p class="price">S/ 150 por noche</p>
+                <button class="btn-reservar">Reservar</button>
+            </div>
         </div>
+
     </div>
 </section>
-
-
-<!-- =================== REDIRECCIÓN SI NO HAY SESIÓN ==================== -->
-<script type="module">
-import { auth } from './js/main.js';
-import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js';
-
-onAuthStateChanged(auth, (user) => {
-    if (!user) {
-        window.location.href = 'login-cliente.html';
-    } else {
-        const emailSpan = document.getElementById("user-email");
-        if (emailSpan) emailSpan.textContent = user.email;
-    }
-});
-</script>
-
-<!-- =================== SCRIPTS ==================== -->
-<script type="module" src="js/main.js"></script>
-<script type="module" src="js/inicio.js"></script>
-
-</body>
-</html>
