@@ -1,10 +1,70 @@
-<script type="module">
-    import { auth } from "./js/main.js";
-    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+<!-- index.html (panel cliente) -->
+<input type="date" id="fechaSalida">
+</div>
 
-    onAuthStateChanged(auth, (user) => {
-        if (!user) {
-            window.location.href = "login-cliente.html"; // SI NO ESTÁ LOGUEADO → LOGIN
-        }
-    });
+
+<div class="field">
+<label>Tipo de habitación</label>
+<select id="tipoRoom">
+<option>Todas</option>
+<option>Simple</option>
+<option>Doble</option>
+<option>Matrimonial</option>
+</select>
+</div>
+
+
+<div class="field">
+<label>Huéspedes</label>
+<select id="huéspedes">
+<option>1 persona</option>
+<option>2 personas</option>
+<option>3 personas</option>
+<option>4 personas</option>
+</select>
+</div>
+</div>
+
+
+<button class="btn-search" id="btnBuscar">🔍 Buscar Habitaciones</button>
+</section>
+
+
+<!-- LISTA DE HABITACIONES -->
+<section class="rooms-section">
+<h3>Habitaciones Disponibles (6)</h3>
+
+
+<div class="rooms-grid" id="roomsGrid">
+<div class="room-card">
+<img src="img/habitacion1.jpg" alt="hab1">
+</div>
+<div class="room-card">
+<img src="img/habitacion2.jpg" alt="hab2">
+</div>
+<div class="room-card">
+<img src="img/habitacion3.jpg" alt="hab3">
+</div>
+</div>
+</section>
+
+
+<!-- Protección: si no hay sesión redirige al login -->
+<script type="module">
+import { auth } from './js/main.js';
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js';
+
+
+onAuthStateChanged(auth, (user) => {
+if (!user) {
+// No está logueado → ir al login
+window.location.href = 'login-cliente.html';
+}
+});
 </script>
+
+
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/inicio.js"></script>
+</body>
+</html>
