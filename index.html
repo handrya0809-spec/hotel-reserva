@@ -1,70 +1,105 @@
-<!-- index.html (panel cliente) -->
-<input type="date" id="fechaSalida">
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Cliente</title>
+
+    <!-- RUTA CORRECTA DEL CSS -->
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+
+<!-- =================== TOP BAR ==================== -->
+<header class="top-bar">
+    <div class="left">
+        <img src="img/logo.png" class="logo-icon" alt="logo">
+        <span class="logo-text">Bienvenido</span>
+    </div>
+
+    <div class="right">
+        <div class="user-info">
+            <span id="user-email"></span>
+        </div>
+        <button id="logoutBtn" class="btn-logout">Cerrar sesión</button>
+    </div>
+</header>
 
 
-<div class="field">
-<label>Tipo de habitación</label>
-<select id="tipoRoom">
-<option>Todas</option>
-<option>Simple</option>
-<option>Doble</option>
-<option>Matrimonial</option>
-</select>
-</div>
+<!-- =================== BUSCADOR ==================== -->
+<section class="search-box">
+    <h2>Buscar Habitaciones</h2>
 
+    <div class="search-grid">
 
-<div class="field">
-<label>Huéspedes</label>
-<select id="huéspedes">
-<option>1 persona</option>
-<option>2 personas</option>
-<option>3 personas</option>
-<option>4 personas</option>
-</select>
-</div>
-</div>
+        <div class="field">
+            <label>Fecha de salida</label>
+            <input type="date" id="fechaSalida">
+        </div>
 
+        <div class="field">
+            <label>Tipo de habitación</label>
+            <select id="tipoRoom">
+                <option>Todas</option>
+                <option>Simple</option>
+                <option>Doble</option>
+                <option>Matrimonial</option>
+            </select>
+        </div>
 
-<button class="btn-search" id="btnBuscar">🔍 Buscar Habitaciones</button>
+        <div class="field">
+            <label>Huéspedes</label>
+            <select id="huéspedes">
+                <option>1 persona</option>
+                <option>2 personas</option>
+                <option>3 personas</option>
+                <option>4 personas</option>
+            </select>
+        </div>
+
+    </div>
+
+    <button class="btn-search" id="btnBuscar">🔍 Buscar Habitaciones</button>
 </section>
 
 
-<!-- LISTA DE HABITACIONES -->
+<!-- =================== HABITACIONES ==================== -->
 <section class="rooms-section">
-<h3>Habitaciones Disponibles (6)</h3>
+    <h3>Habitaciones Disponibles (6)</h3>
 
-
-<div class="rooms-grid" id="roomsGrid">
-<div class="room-card">
-<img src="img/habitacion1.jpg" alt="hab1">
-</div>
-<div class="room-card">
-<img src="img/habitacion2.jpg" alt="hab2">
-</div>
-<div class="room-card">
-<img src="img/habitacion3.jpg" alt="hab3">
-</div>
-</div>
+    <div class="rooms-grid" id="roomsGrid">
+        <div class="room-card">
+            <img src="img/habitacion1.jpg" alt="hab1">
+        </div>
+        <div class="room-card">
+            <img src="img/habitacion2.jpg" alt="hab2">
+        </div>
+        <div class="room-card">
+            <img src="img/habitacion3.jpg" alt="hab3">
+        </div>
+    </div>
 </section>
 
 
-<!-- Protección: si no hay sesión redirige al login -->
+<!-- =================== REDIRECCIÓN SI NO HAY SESIÓN ==================== -->
 <script type="module">
 import { auth } from './js/main.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js';
 
-
 onAuthStateChanged(auth, (user) => {
-if (!user) {
-// No está logueado → ir al login
-window.location.href = 'login-cliente.html';
-}
+    if (!user) {
+        window.location.href = 'login-cliente.html';
+    } else {
+        const emailSpan = document.getElementById("user-email");
+        if (emailSpan) emailSpan.textContent = user.email;
+    }
 });
 </script>
 
-
+<!-- =================== SCRIPTS ==================== -->
 <script type="module" src="js/main.js"></script>
 <script type="module" src="js/inicio.js"></script>
+
 </body>
 </html>
