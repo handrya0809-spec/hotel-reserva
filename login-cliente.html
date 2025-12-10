@@ -1,60 +1,66 @@
+<!-- login-cliente.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Cliente</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login Cliente</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="login-body">
 
-    <div class="login-container">
-        <h2>Ingreso de Cliente</h2>
 
-        <!-- Mensaje de éxito si se registró correctamente -->
-        <div id="successMessage" style="display: none; color: green;">
-            <p>¡Te has registrado correctamente! Ahora, por favor, inicia sesión.</p>
-        </div>
+<div class="login-container">
+<h2>Ingreso de Cliente</h2>
 
-        <div class="input-group">
-            <input id="email" type="email" placeholder="Correo electrónico" required>
-        </div>
 
-        <div class="input-group">
-            <input id="password" type="password" placeholder="Contraseña" required>
-        </div>
+<div id="successMessage" style="display:none; color:green; margin-bottom:10px"></div>
 
-        <button id="loginBtn">Ingresar</button>
 
-        <a href="login-admin.html" class="switch-login">¿Eres administrador?</a>
+<div class="input-group">
+<input id="email" type="email" placeholder="Correo electrónico" required>
+</div>
 
-        <a href="registro-cliente.html" class="switch-login">¿No tienes cuenta? Regístrate aquí</a>
-    </div>
 
-    <script type="module">
-        import { auth } from "./js/main.js";
-        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+<div class="input-group">
+<input id="password" type="password" placeholder="Contraseña" required>
+</div>
 
-        // Verificar si la URL tiene el parámetro 'registered'
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('registered') === 'true') {
-            document.getElementById('successMessage').style.display = 'block'; // Mostrar mensaje de éxito
-        }
 
-        document.getElementById("loginBtn").addEventListener("click", () => {
-            const email = document.getElementById("email").value;
-            const pass = document.getElementById("password").value;
+<button id="loginBtn">Ingresar</button>
 
-            signInWithEmailAndPassword(auth, email, pass)
-                .then(() => {
-                    window.location.href = "index.html"; // Redirigir al panel del cliente
-                })
-                .catch(error => {
-                    alert("Error: " + error.message);
-                });
-        });
-    </script>
+
+<a href="login-admin.html" class="switch-login">¿Eres administrador?</a>
+<a href="registro-cliente.html" class="switch-login">¿No tienes cuenta? Regístrate aquí</a>
+</div>
+
+
+<script type="module">
+import { auth } from './js/main.js';
+import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js';
+
+
+// Mostrar mensaje si viene de registro
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('registered') === 'true') {
+document.getElementById('successMessage').textContent = '¡Te has registrado correctamente! Por favor inicia sesión.';
+document.getElementById('successMessage').style.display = 'block';
+}
+
+
+document.getElementById('loginBtn').addEventListener('click', () => {
+const email = document.getElementById('email').value;
+const pass = document.getElementById('password').value;
+
+
+signInWithEmailAndPassword(auth, email, pass)
+.then(() => {
+window.location.href = 'index.html';
+})
+.catch(err => alert('Error: ' + err.message));
+});
+</script>
+
 
 </body>
 </html>
